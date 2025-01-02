@@ -1,1 +1,90 @@
+body {
+  background: linear-gradient(#0007, #0000), #123;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
 
+#countdown {
+  text-align: center;
+}
+
+#date {
+  font-size: 4vmin;
+  margin-bottom: 10px;
+}
+
+#clock {
+  font-size: 10vmin;
+  transition: color 1s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes firework {
+  0% {
+    transform: translate(var(--x), var(--initialY));
+    width: var(--initialSize);
+    opacity: 1;
+  }
+  50% {
+    width: 2vmin;
+    opacity: 0.7;
+  }
+  100% {
+    width: var(--finalSize);
+    opacity: 0;
+  }
+}
+
+.firework, .firework::before, .firework::after {
+  --initialSize: 1vmin;
+  --finalSize: 50vmin;
+  --particleSize: 0.5vmin;
+  --color1: yellow;
+  --color2: red;
+  --color3: white;
+  --color4: lime;
+  --color5: gold;
+  --color6: mediumseagreen;
+  --y: -30vmin;
+  --x: -50%;
+  --initialY: 60vmin;
+  content: "";
+  animation: firework 2s forwards;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, var(--y));
+  width: var(--initialSize);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 50% 0%,
+    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
+    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 100%,
+    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 50%;
+  background-size: var(--initialSize) var(--initialSize);
+  background-repeat: no-repeat;
+}
+
+.firework:nth-child(2) {
+  --x: 30vmin;
+  left: 30%;
+  top: 60%;
+  animation-delay: -0.25s;
+}
+
+.firework:nth-child(3) {
+  --x: -30vmin;
+  --y: -50vmin;
+  left: 70%;
+  top: 60%;
+  animation-delay: -0.4s;
+}
